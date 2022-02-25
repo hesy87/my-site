@@ -4,5 +4,5 @@ register=template.Library()
 
 @register.inclusion_tag('blog/blog-latestposts.html')
 def lastestposts ():
-  posts = Post.objects.filter(status=1).order_by('published_date')
+  posts = Post.objects.filter(status=1).order_by('-published_date')[:6]
   return {'posts':posts}

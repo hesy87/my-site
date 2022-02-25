@@ -1,0 +1,3 @@
+با سلام و احترام
+آدرس حل این مسئله 
+website --> templatetags --> website-tags.py
