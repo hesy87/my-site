@@ -13,10 +13,33 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from xml.dom.minidom import Document
 from django.contrib import admin
 from django.urls import path,include
-from website.views import *
+from django.contrib.sitemaps.views import sitemap
+
+from website.sitemaps import StaticViewSitemap
+from blog.sitemaps import BlogSitemap
+
+sitemaps = {
+    'static': StaticViewSitemap,
+    'blog' : BlogSitemap,
+}
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',include('website.urls'))
+    path('',include('website.urls')),
+    path('blog/',include('blog.urls')),
+    path('test',include('website.urls')),
+    path('sitemap.xml', sitemap, {'sitemaps': sitemaps},
+         name='django.contrib.sitemaps.views.sitemap'),
+    path('robots.txt', include('robots.urls')),
+    path('__debug__/', include('debug_toolbar.urls')),
+    path('summernote/', include('django_summernote.urls')),
+    path('captcha/', include('captcha.urls')),
+    path('accounts/',include('accounts.urls')),
 ]
+
+
+
+

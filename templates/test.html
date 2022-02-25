@@ -1,0 +1,18 @@
+{% load blog_tags %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<meta charset="UTF=8">
+		<meta http-equiv="x-ua-compatible" content="ie=Edge">
+		<meta name="viewport" content="widths=device-widths , initial-scale=1.0" >
+		<title>document</title>
+</head>
+<body>
+		<form action="{% url 'website:test' %}" method="post">
+			{% csrf_token %}
+			{{form.as_p}}
+			<button type="submit">submit</button>
+		</form>	
+</body>	
+</html>

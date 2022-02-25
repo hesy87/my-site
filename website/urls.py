@@ -1,10 +1,22 @@
 from django.contrib import admin
 from django.urls import path
 from website.views import *
-urlpatterns = [
+from django.conf import settings
+from django.conf.urls.static import static
 
-    path('',index_view),
-    path('about',about_view),
-    path('contact',contact_view)
+
+app_name = 'website'
+urlpatterns = [ 
+path('admin/', admin.site.urls),
+path('',index_view,name='index'),
+path('about',about_view,name ='about'),
+path('contact',contact_view,name ='contact'),
+path('test',test_view,name ='test'),
+
 
 ]
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+ 
+
+
